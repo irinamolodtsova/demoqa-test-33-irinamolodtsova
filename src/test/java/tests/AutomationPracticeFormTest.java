@@ -4,8 +4,6 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -16,12 +14,15 @@ public class AutomationPracticeFormTest {
     static void beforeAll() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = false;
+        Configuration.pageLoadStrategy = "eager";
     }
 
     @Test
     void fillFormTest() {
         open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         $("#firstName").setValue("Test");
         $("#lastName").setValue("Testovich");
         $("#userEmail").setValue("test@testovich.com");
@@ -39,15 +40,14 @@ public class AutomationPracticeFormTest {
         $("#hobbies-checkbox-1").should(checked);
         $("#hobbies-checkbox-2").shouldNot(checked);
         $("#hobbies-checkbox-3").shouldNot(checked);
-        $("#submit").scrollIntoView(true);
-        $("#uploadPicture").uploadFile(new File("src/test/resources/927002368dfb5a96427ae990838dd112.jpg"));
+        $("#uploadPicture").uploadFromClasspath("picfortest.jpg");
         $("#currentAddress").setValue("Address 1");
         $("#state").click();
         $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#city").click();
         $("#react-select-4-input").setValue("Delhi").pressEnter();
         $("#submit").click();
-        $(byText("Thanks for submitting the form")).should(exist);
+        $(".modal-title.h4").should(exist);
         $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("Test Testovich"));
         $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("test@testovich.com"));
         $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("Male"));
@@ -55,11 +55,10 @@ public class AutomationPracticeFormTest {
         $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("05 July,2000"));
         $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("English"));
         $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("Sports"));
-        $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("927002368dfb5a96427ae990838dd112.jpg"));
+        $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("picfortest.jpg"));
         $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("Address 1"));
         $(".table.table-dark.table-striped.table-bordered.table-hover").shouldHave(text("NCR Delhi"));
-        $("#closeLargeModal").scrollIntoView(true);
         $("#closeLargeModal").click();
-        $(byText("Thanks for submitting the form")).shouldNot(exist);
+        $(".modal-title.h4").shouldNot(exist);
     }
 }
