@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.texts;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class GitHubSelenideSearchTest {
@@ -22,6 +23,6 @@ public class GitHubSelenideSearchTest {
         $("#wiki-tab").click();
         $$(".markdown-body").shouldHave(texts("Soft assertions"));
         $(".markdown-body").$("[href='/selenide/selenide/wiki/SoftAssertions']").click();
-        $$(".markdown-body").shouldHave(texts("JUnit5 extension - com.codeborne.selenide.junit5.SoftAssertsExtension"));
+        $$(".highlight.highlight-source-java").get(3).shouldBe(enabled);
     }
 }
