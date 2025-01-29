@@ -1,15 +1,8 @@
 package lesson6.tests;
 
-import com.codeborne.selenide.Configuration;
 import lesson6.pages.RegistrationPage;
 import lesson6.pages.components.ConfirmationWindowComponent;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.by;
-import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
 
 public class RegistrationPagePOTest extends BaseTest {
 
@@ -19,12 +12,13 @@ public class RegistrationPagePOTest extends BaseTest {
     @Test
     void successRegistrationPage() {
         registrationPage.openPage()
+                .removeBanners()
                 .setFirstName("Test")
                 .setLastName("Testov")
                 .setEmail("test@testov.com")
                 .chooseGender("Male")
                 .setUserNumber("1234567899")
-                .setDateOfBirth("Choose Wednesday, July 5th, 2000", "July", "2000")
+                .setDateOfBirth("05", "July", "2000")
                 .setSubject("English")
                 .chooseHobbies("Sports")
                 .uploadFile("picfortest.jpg")
@@ -50,11 +44,12 @@ public class RegistrationPagePOTest extends BaseTest {
     @Test
     void necessaryFieldsOnlyRegistrationPage() {
         registrationPage.openPage()
+                .removeBanners()
                 .setFirstName("Test")
                 .setLastName("Testov")
                 .chooseGender("Male")
                 .setUserNumber("1234567899")
-                .setDateOfBirth("Choose Wednesday, July 5th, 2000", "July", "2000")
+                .setDateOfBirth("05", "July", "2000")
                 .submitRegistration()
                 .registrationConfirmationWindowShouldExist();
         confirmationWindow.checkResult("Student Name", "Test Testov")
@@ -68,12 +63,12 @@ public class RegistrationPagePOTest extends BaseTest {
     @Test
     void failedRegistrationNotAllNecessaryFieldsFilled() {
         registrationPage.openPage()
+                .removeBanners()
                 .setFirstName("Test")
                 .setLastName("Testov")
                 .chooseGender("Male")
-                .setDateOfBirth("Choose Wednesday, July 5th, 2000", "July", "2000")
+                .setDateOfBirth("05", "July", "2000")
                 .submitRegistration()
                 .registrationConfirmationWindowShouldNotExist();
-
     }
 }

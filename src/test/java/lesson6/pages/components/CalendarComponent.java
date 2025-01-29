@@ -9,7 +9,7 @@ public class CalendarComponent {
     public void calendarSetDay(String day, String month, String year) {
         $(".react-datepicker__month-select").selectOption(month);
         $(".react-datepicker__year-select").selectOption(year);
-        $(by("aria-label", day)).click();
+        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month)").click();
 
     }
 }
