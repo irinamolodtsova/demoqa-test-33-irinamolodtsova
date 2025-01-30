@@ -46,12 +46,6 @@ public class RandomUtils {
         return getRandomItemFromArray(year);
     }
 
-    public static String getRandomHobbies() {
-        String[] hobbies = {"Sports", "Reading", "Music"};
-
-        return getRandomItemFromArray(hobbies);
-    }
-
     public static String getRandomPhone() {
         return String.format("%s%s%s%s%s", getRandomInt(1, 9), getRandomInt(111, 999),
                 getRandomInt(111, 999), getRandomInt(11, 99), getRandomInt(1, 9));

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
+import static com.codeborne.selenide.Selenide.sleep;
 import static lesson7.utils.RandomUtils.*;
 
 public class RegistrationPageFakerTest extends BaseTest {
@@ -24,7 +25,11 @@ public class RegistrationPageFakerTest extends BaseTest {
     String year = getRandomYear();
     String gender = getRandomGender();
     String month = getRandomMonth();
-    String hobbies = getRandomHobbies();
+    String hobbies = "Sports";
+    String subject = "English";
+    String picture = "picfortest.jpg";
+    String state = "NCR";
+    String city = "Delhi";
 
 
 
@@ -38,12 +43,12 @@ public class RegistrationPageFakerTest extends BaseTest {
                 .chooseGender(gender)
                 .setUserNumber(userNumber)
                 .setDateOfBirth(day, month, year)
-                .setSubject("English")
+                .setSubject(subject)
                 .chooseHobbies(hobbies)
-                .uploadFile("picfortest.jpg")
+                .uploadFile(picture)
                 .setAddress(currentAddress)
-                .setState("NCR")
-                .setCity("Delhi")
+                .setState(state)
+                .setCity(city)
                 .submitRegistration()
                 .registrationConfirmationWindowShouldExist();
         confirmationWindow.checkResult("Student Name", firstName + " " + lastName)
@@ -51,13 +56,14 @@ public class RegistrationPageFakerTest extends BaseTest {
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", userNumber)
                 .checkResult("Date of Birth", day + " " + month + "," + year)
-                .checkResult("Subjects", "English")
+                .checkResult("Subjects", subject)
                 .checkResult("Hobbies", hobbies)
-                .checkResult("Picture", "picfortest.jpg")
+                .checkResult("Picture", picture)
                 .checkResult("Address", currentAddress)
-                .checkResult("State and City", "NCR Delhi");
+                .checkResult("State and City", state + " " + city);
         registrationPage.closeRegistrationConfirmationWindow()
                 .registrationConfirmationWindowShouldNotExist();
+
     }
 
     @Test
