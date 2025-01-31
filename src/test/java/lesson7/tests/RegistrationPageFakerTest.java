@@ -1,98 +1,78 @@
 package lesson7.tests;
 
-import com.github.javafaker.Faker;
 import lesson7.pages.RegistrationPage;
 import lesson7.pages.components.ConfirmationWindowComponent;
+import lesson7.utils.RandomUtils;
 import org.junit.jupiter.api.Test;
 
-import java.util.Locale;
-
-import static com.codeborne.selenide.Selenide.sleep;
-import static lesson7.utils.RandomUtils.*;
 
 public class RegistrationPageFakerTest extends BaseTest {
 
     RegistrationPage registrationPage = new RegistrationPage();
     ConfirmationWindowComponent confirmationWindow = new ConfirmationWindowComponent();
-
-    Faker faker = new Faker();
-    String firstName = faker.name().firstName();
-    String lastName = faker.name().lastName();
-    String userEmail = faker.internet().emailAddress();
-    String currentAddress = faker.address().streetAddress();
-    String userNumber = getRandomPhone();
-    String day = getRandomDay();
-    String year = getRandomYear();
-    String gender = getRandomGender();
-    String month = getRandomMonth();
-    String hobbies = "Sports";
-    String subject = "English";
-    String picture = "picfortest.jpg";
-    String state = "NCR";
-    String city = "Delhi";
-
+    RandomUtils randomUtils = new RandomUtils();
 
 
     @Test
-    void successRegistrationPage() {
+    void successRegistrationPageTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(userEmail)
-                .chooseGender(gender)
-                .setUserNumber(userNumber)
-                .setDateOfBirth(day, month, year)
-                .setSubject(subject)
-                .chooseHobbies(hobbies)
-                .uploadFile(picture)
-                .setAddress(currentAddress)
-                .setState(state)
-                .setCity(city)
+                .setFirstName(randomUtils.firstName)
+                .setLastName(randomUtils.lastName)
+                .setEmail(randomUtils.userEmail)
+                .chooseGender(randomUtils.gender)
+                .setUserNumber(randomUtils.userNumber)
+                .setDateOfBirth(randomUtils.day, randomUtils.month, randomUtils.year)
+                .setSubject(randomUtils.subject)
+                .chooseHobbies(randomUtils.hobbies)
+                .uploadFile(randomUtils.picture)
+                .setAddress(randomUtils.currentAddress)
+                .setState(randomUtils.state)
+                .setCity(randomUtils.city)
                 .submitRegistration()
                 .registrationConfirmationWindowShouldExist();
-        confirmationWindow.checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Student Email", userEmail)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", userNumber)
-                .checkResult("Date of Birth", day + " " + month + "," + year)
-                .checkResult("Subjects", subject)
-                .checkResult("Hobbies", hobbies)
-                .checkResult("Picture", picture)
-                .checkResult("Address", currentAddress)
-                .checkResult("State and City", state + " " + city);
+        confirmationWindow.checkResult("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
+                .checkResult("Student Email", randomUtils.userEmail)
+                .checkResult("Gender", randomUtils.gender)
+                .checkResult("Mobile", randomUtils.userNumber)
+                .checkResult("Date of Birth", randomUtils.day + " " + randomUtils.month + "," + randomUtils.year)
+                .checkResult("Subjects", randomUtils.subject)
+                .checkResult("Hobbies", randomUtils.hobbies)
+                .checkResult("Picture", randomUtils.picture)
+                .checkResult("Address", randomUtils.currentAddress)
+                .checkResult("State and City", randomUtils.state + " " + randomUtils.city);
         registrationPage.closeRegistrationConfirmationWindow()
                 .registrationConfirmationWindowShouldNotExist();
 
     }
 
     @Test
-    void necessaryFieldsOnlyRegistrationPage() {
+    void necessaryFieldsOnlyRegistrationPageTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .chooseGender(gender)
-                .setUserNumber(userNumber)
-                .setDateOfBirth(day, month, year)
+                .setFirstName(randomUtils.firstName)
+                .setLastName(randomUtils.lastName)
+                .chooseGender(randomUtils.gender)
+                .setUserNumber(randomUtils.userNumber)
+                .setDateOfBirth(randomUtils.day, randomUtils.month, randomUtils.year)
                 .submitRegistration()
                 .registrationConfirmationWindowShouldExist();
-        confirmationWindow.checkResult("Student Name", firstName + " " + lastName)
-                .checkResult("Gender",  gender)
-                .checkResult("Mobile", userNumber)
-                .checkResult("Date of Birth", day + " " + month + "," + year);
+        confirmationWindow.checkResult("Student Name", randomUtils.firstName + " " + randomUtils.lastName)
+                .checkResult("Gender", randomUtils.gender)
+                .checkResult("Mobile", randomUtils.userNumber)
+                .checkResult("Date of Birth", randomUtils.day + " " + randomUtils.month + "," + randomUtils.year);
         registrationPage.closeRegistrationConfirmationWindow()
                 .registrationConfirmationWindowShouldNotExist();
     }
 
     @Test
-    void failedRegistrationNotAllNecessaryFieldsFilled() {
+    void failedRegistrationNotAllNecessaryFieldsFilledTest() {
         registrationPage.openPage()
                 .removeBanners()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .chooseGender(gender)
-                .setDateOfBirth(day, month, year)
+                .setFirstName(randomUtils.firstName)
+                .setLastName(randomUtils.lastName)
+                .chooseGender(randomUtils.gender)
+                .setDateOfBirth(randomUtils.day, randomUtils.month, randomUtils.year)
                 .submitRegistration()
                 .registrationConfirmationWindowShouldNotExist();
     }
