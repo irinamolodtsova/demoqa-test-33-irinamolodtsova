@@ -44,7 +44,7 @@ public class RegistrationPageParamsTest extends BaseTest {
     }
 
     // 2- @CsvFileSource
-    @CsvFileSource(resources = "/necessaryFieldsOnlyRegistrationPageUsingCsvFileSourceAnnotationTest.csv")
+    @CsvFileSource(resources = "/necessaryFieldsOnlyRegistrationPageUsingCsvFileSourceAnnotationTest1.csv")
     @ParameterizedTest(name = "Проверка успешной регистрации при выборе данных {0} {1} {2} {3} {4} {5} {6} через аннотацию @CsvFileSource")
     void necessaryFieldsOnlyRegistrationPageUsingCsvFileSourceAnnotationTest(String firstName,
                                                                              String lastName,
