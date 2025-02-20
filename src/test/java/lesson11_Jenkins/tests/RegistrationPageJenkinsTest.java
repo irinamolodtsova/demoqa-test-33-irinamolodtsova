@@ -20,7 +20,7 @@ public class RegistrationPageJenkinsTest extends BaseTest {
     @BeforeEach
     void beforeEach() {
         registrationPage.openPage();
-                sleep(2000);
+        sleep(2000);
         registrationPage.removeBanners();
     }
 
@@ -34,11 +34,11 @@ public class RegistrationPageJenkinsTest extends BaseTest {
 
     @CsvFileSource(resources = "/necessaryFieldsOnlyRegistrationPageUsingCsvFileSourceAnnotationTest2.csv")
     @ParameterizedTest(name = "Проверка успешной регистрации при выборе данных {0} {1} {2} {3} {4} {5} {6} через аннотацию @CsvFileSource")
-    void necessaryFieldsOnlyRegistrationPageUsingCsvFileSourceAnnotationTest(String firstName,
-                                                                             String lastName,
-                                                                             String gender,
-                                                                             String userNumber,
-                                                                             String email) {
+    void necessaryFieldsOnlyRegistrationPage(String firstName,
+                                             String lastName,
+                                             String gender,
+                                             String userNumber,
+                                             String email) {
         registrationPage.setFirstName(firstName)
                 .setLastName(lastName)
                 .chooseGender(gender)
