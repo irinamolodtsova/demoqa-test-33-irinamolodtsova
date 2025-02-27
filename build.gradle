@@ -38,6 +38,7 @@ dependencies {
 }
 
 tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 
     testLogging {
@@ -51,5 +52,10 @@ tasks.withType(Test) {
 task jenkins_test(type: Test) {
     useJUnitPlatform {
         includeTags("jenkins_test")
+    }
+}
+task jenkins_params_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("jenkins_params_test")
     }
 }
