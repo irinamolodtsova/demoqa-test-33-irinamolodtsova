@@ -1,5 +1,8 @@
 package lesson12_jenkinsParams.tests;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import lesson12_jenkinsParams.helpers.Attach;
 import lesson12_jenkinsParams.pages.pages.RegistrationPage;
 import org.junit.jupiter.api.AfterEach;
@@ -9,8 +12,6 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import static com.codeborne.selenide.Selenide.sleep;
-
 @Tag("jenkins_params_test")
 @DisplayName("Registration Page Jenkins Test")
 public class RegistrationPageJenkinsTest extends BaseTest {
@@ -19,8 +20,8 @@ public class RegistrationPageJenkinsTest extends BaseTest {
 
     @BeforeEach
     void beforeEach() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         registrationPage.openPage();
-                sleep(2000);
         registrationPage.removeBanners();
     }
 
@@ -30,6 +31,7 @@ public class RegistrationPageJenkinsTest extends BaseTest {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+        Selenide.closeWebDriver();
     }
 
     @CsvFileSource(resources = "/necessaryFieldsOnlyRegistrationPageUsingCsvFileSourceAnnotationTest2.csv")

@@ -7,7 +7,7 @@ public class JenkinsProperties {
         String pw = System.getProperty("pw");
         String server = System.getProperty("server");
 
-        return "https://" + login + ":" + pw + "@" + server + "/wd/hub";//https://user1:1234@selenoid.autotests.cloud/wd/hub    }
+        return "https://" + login + ":" + pw + "@" + server + "/wd/hub";
     }
     public static String getBrowser(){
         return System.getProperty("browser","chrome");
