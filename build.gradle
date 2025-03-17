@@ -33,7 +33,8 @@ dependencies {
             'com.opencsv:opencsv:5.10',
             'com.fasterxml.jackson.core:jackson-databind:2.18.2',
             'org.assertj:assertj-core:3.27.3',
-            'io.qameta.allure:allure-selenide:2.29.0'
+            'io.qameta.allure:allure-selenide:2.29.0',
+            'io.rest-assured:rest-assured:5.3.1'
     )
 }
 
