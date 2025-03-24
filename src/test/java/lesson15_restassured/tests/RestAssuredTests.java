@@ -90,6 +90,17 @@ public class RestAssuredTests {
                 .statusCode(200)
                 .body("job", is("zion resident"));
     }
+
+    @Test
+    void deleteUserTest(){
+        given()
+                .log().uri()
+                .delete("https://reqres.in/api/users/2")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(204);
+    }
 }
 
 
