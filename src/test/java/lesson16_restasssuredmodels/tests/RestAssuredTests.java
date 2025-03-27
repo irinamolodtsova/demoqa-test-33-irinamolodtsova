@@ -3,6 +3,7 @@ package lesson16_restasssuredmodels.tests;
 import io.restassured.RestAssured;
 import lesson16_restasssuredmodels.models.lombok.*;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,7 @@ public class RestAssuredTests {
     }
 
     @Test
+    @DisplayName("Check User Not Found")
     void userNotFoundTest() {
         step("Send request Get User", ()->
         given(userNotFoundSpec)
@@ -29,6 +31,7 @@ public class RestAssuredTests {
     }
 
     @Test
+    @DisplayName("Check Successful Login")
     void successfulLoginWithSpecsTest() {
         LoginModel authData = new LoginModel();
         authData.setEmail("eve.holt@reqres.in");
@@ -50,6 +53,7 @@ public class RestAssuredTests {
     }
 
     @Test
+    @DisplayName("Check Unsuccessful Login")
     void unsuccessfulLoginTest() {
 
         LoginModel authData = new LoginModel();
@@ -72,6 +76,7 @@ public class RestAssuredTests {
 
 
     @Test
+    @DisplayName("Check Successful User Update via Put Method")
     void updateUserDataPutMethodTest(){
         UpdateUserModel newData = new UpdateUserModel();
         newData.setName("eve.holt@reqres.in");
@@ -92,6 +97,7 @@ public class RestAssuredTests {
     }
 
     @Test
+    @DisplayName("Check Successful User Update via Patch Method")
     void updateUserDataPatchMethodTest(){
         UpdateUserModel newData = new UpdateUserModel();
         newData.setName("eve.holt@reqres.in");
@@ -112,6 +118,7 @@ public class RestAssuredTests {
     }
 
     @Test
+    @DisplayName("Check Successful User Delete")
     void deleteUserTest(){
         step("Send request Delete User", ()->
         given(deleteRequestSpec)
