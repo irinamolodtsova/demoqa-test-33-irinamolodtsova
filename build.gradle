@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id("io.qameta.allure") version "2.12.0"
+    id "io.freefair.lombok" version "6.0.0-m2"
 
 }
 
@@ -34,7 +35,8 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-databind:2.18.2',
             'org.assertj:assertj-core:3.27.3',
             'io.qameta.allure:allure-selenide:2.29.0',
-            'io.rest-assured:rest-assured:5.3.1'
+            'io.rest-assured:rest-assured:5.3.1',
+            "io.qameta.allure:allure-rest-assured:2.29.1"
     )
 }
 
@@ -58,5 +60,10 @@ task jenkins_test(type: Test) {
 task jenkins_params_test(type: Test) {
     useJUnitPlatform {
         includeTags("jenkins_params_test")
+    }
+}
+task rest_assured(type: Test) {
+    useJUnitPlatform {
+        includeTags("rest_assured")
     }
 }
