@@ -1,4 +1,4 @@
-package lesson16_restasssuredmodels.models.lombok;
+package lesson16_restasssuredmodels.models;
 
 import lombok.Data;
 

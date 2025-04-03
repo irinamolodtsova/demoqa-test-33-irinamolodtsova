@@ -1,7 +1,7 @@
 package lesson16_restasssuredmodels.tests;
 
 import io.restassured.RestAssured;
-import lesson16_restasssuredmodels.models.lombok.*;
+import lesson16_restasssuredmodels.models.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -17,17 +17,20 @@ public class RestAssuredTests {
 
     @BeforeAll
     public static void setUp() {
-        RestAssured.baseURI = "https://reqres.in";
+        RestAssured.baseURI = "https://reqres.in/api";
+        //если делаю, то почему то /api не подставляется, почему так?
+        //RestAssured.baseURI = "https://reqres.in";
+        //  RestAssured.basePath = "/api";
     }
 
     @Test
     @DisplayName("Check User Not Found")
     void userNotFoundTest() {
-        step("Send request Get User", ()->
-        given(userNotFoundSpec)
-                .get()
-                .then()
-                .spec(userNotFoundResponseSpec));
+        step("Send request Get User", () ->
+                given(userNotFoundSpec)
+                        .get()
+                        .then()
+                        .spec(codeResponse(404)));
     }
 
     @Test
@@ -37,18 +40,16 @@ public class RestAssuredTests {
         authData.setEmail("eve.holt@reqres.in");
         authData.setPassword("cityslicka");
 
-        LoginResponse response = step("Make request", ()->
+        LoginResponse response = step("Make request", () ->
                 given(loginRequestSpec)
                         .body(authData)
-
                         .when()
                         .post()
-
                         .then()
-                        .spec(loginResponseSpec)
+                        .spec(codeResponse(200))
                         .extract().as(LoginResponse.class));
 
-        step("Check response", ()->
+        step("Check response", () ->
                 assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
     }
 
@@ -59,73 +60,68 @@ public class RestAssuredTests {
         LoginModel authData = new LoginModel();
         authData.setEmail("eve.holt@reqres.in");
 
-        ErrorModel response = step("Make request", ()->
+        ErrorModel response = step("Make request", () ->
                 given(loginRequestSpec)
                         .body(authData)
-
                         .when()
                         .post()
-
                         .then()
-                        .spec(missingUserPasswordSpec)
+                        .spec(codeResponse(400))
                         .extract().as(ErrorModel.class));
 
-        step("Check response", ()->
+        step("Check response", () ->
                 assertEquals("Missing password", response.getError()));
     }
 
 
     @Test
     @DisplayName("Check Successful User Update via Put Method")
-    void updateUserDataPutMethodTest(){
+    void updateUserDataPutMethodTest() {
         UpdateUserModel newData = new UpdateUserModel();
         newData.setName("eve.holt@reqres.in");
         newData.setJob("zion resident");
 
-        UpdateUserResponse response = step("Make PUT request", ()->
-        given(updateUserSpec)
-                .body( newData)
-                .when()
-                .put()
-
-                .then()
-                .spec(updatedUserSpec)
-                .extract().as(UpdateUserResponse.class));
-        step("Response", ()->
+        UpdateUserResponse response = step("Make PUT request", () ->
+                given(updateUserSpec)
+                        .body(newData)
+                        .when()
+                        .put()
+                        .then()
+                        .spec(codeResponse(200))
+                        .extract().as(UpdateUserResponse.class));
+        step("Response", () ->
                 assertEquals("zion resident", response.getJob()));
 
     }
 
     @Test
     @DisplayName("Check Successful User Update via Patch Method")
-    void updateUserDataPatchMethodTest(){
+    void updateUserDataPatchMethodTest() {
         UpdateUserModel newData = new UpdateUserModel();
         newData.setName("eve.holt@reqres.in");
         newData.setJob("zion resident");
 
-        UpdateUserResponse response = step("Make PATCH request", ()->
+        UpdateUserResponse response = step("Make PATCH request", () ->
                 given(updateUserSpec)
-                        .body( newData)
+                        .body(newData)
                         .when()
                         .patch()
-
                         .then()
-                        .spec(updatedUserSpec)
+                        .spec(codeResponse(200))
                         .extract().as(UpdateUserResponse.class));
-        step("Response", ()->
+        step("Response", () ->
                 assertEquals("zion resident", response.getJob()));
 
     }
 
     @Test
     @DisplayName("Check Successful User Delete")
-    void deleteUserTest(){
-        step("Send request Delete User", ()->
-        given(deleteRequestSpec)
-
-                .delete()
-                .then()
-                .spec(deleteResponseSpec));
+    void deleteUserTest() {
+        step("Send request Delete User", () ->
+                given(deleteRequestSpec)
+                        .delete()
+                        .then()
+                        .spec(codeResponse(204)));
     }
 }
 
