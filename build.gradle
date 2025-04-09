@@ -62,8 +62,3 @@ task jenkins_params_test(type: Test) {
         includeTags("jenkins_params_test")
     }
 }
-task rest_assured(type: Test) {
-    useJUnitPlatform {
-        includeTags("rest_assured")
-    }
-}
