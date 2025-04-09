@@ -17,27 +17,22 @@ public class UserSpecs {
             .log().uri()
             .log().body()
             .log().headers()
-            .contentType(JSON)
-            .basePath("/login");
+            .contentType(JSON);
 
     public static RequestSpecification userNotFoundSpec = with()
-            .log().uri()
-            .basePath("/users/23");
+            .log().uri();
 
     public static RequestSpecification updateUserSpec = with()
             .filter(withCustomTemplates())
             .log().uri()
-            .contentType(JSON)
-            .basePath("/users/2");
+            .contentType(JSON);
 
     public static RequestSpecification deleteRequestSpec = with()
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
             .log().headers()
-            .contentType(JSON)
-            .basePath("/users/2");
-
+            .contentType(JSON);
 
     public static ResponseSpecification codeResponse(Integer code) {
         return new ResponseSpecBuilder()

@@ -12,15 +12,13 @@ import static io.restassured.RestAssured.given;
 import static lesson16_restasssuredmodels.specs.UserSpecs.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Tag("rest_assured")
 public class RestAssuredTests {
 
     @BeforeAll
     public static void setUp() {
-        RestAssured.baseURI = "https://reqres.in/api";
-        //если делаю, то почему то /api не подставляется, почему так?
-        //RestAssured.baseURI = "https://reqres.in";
-        //  RestAssured.basePath = "/api";
+
+        RestAssured.baseURI = "https://reqres.in";
+        RestAssured.basePath = "/api";
     }
 
     @Test
@@ -28,7 +26,7 @@ public class RestAssuredTests {
     void userNotFoundTest() {
         step("Send request Get User", () ->
                 given(userNotFoundSpec)
-                        .get()
+                        .get("/users/23")
                         .then()
                         .spec(codeResponse(404)));
     }
@@ -44,7 +42,7 @@ public class RestAssuredTests {
                 given(loginRequestSpec)
                         .body(authData)
                         .when()
-                        .post()
+                        .post("/login")
                         .then()
                         .spec(codeResponse(200))
                         .extract().as(LoginResponse.class));
@@ -64,7 +62,7 @@ public class RestAssuredTests {
                 given(loginRequestSpec)
                         .body(authData)
                         .when()
-                        .post()
+                        .post("/login")
                         .then()
                         .spec(codeResponse(400))
                         .extract().as(ErrorModel.class));
@@ -85,7 +83,7 @@ public class RestAssuredTests {
                 given(updateUserSpec)
                         .body(newData)
                         .when()
-                        .put()
+                        .put("/users/2")
                         .then()
                         .spec(codeResponse(200))
                         .extract().as(UpdateUserResponse.class));
@@ -105,7 +103,7 @@ public class RestAssuredTests {
                 given(updateUserSpec)
                         .body(newData)
                         .when()
-                        .patch()
+                        .patch("/users/2")
                         .then()
                         .spec(codeResponse(200))
                         .extract().as(UpdateUserResponse.class));
@@ -119,7 +117,7 @@ public class RestAssuredTests {
     void deleteUserTest() {
         step("Send request Delete User", () ->
                 given(deleteRequestSpec)
-                        .delete()
+                        .delete("/users/2")
                         .then()
                         .spec(codeResponse(204)));
     }

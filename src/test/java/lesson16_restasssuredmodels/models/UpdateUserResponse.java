@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class UpdateUserResponse {
-    String name,job,updatedAt;
+    String name, job, updatedAt;
 }
