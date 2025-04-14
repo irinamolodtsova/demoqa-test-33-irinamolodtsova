@@ -5,8 +5,8 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.FIRST)
 @Config.Sources({
-        "classpath:config/${env}.properties",
-        "classpath:config/local.properties"
+        "classpath:${env}.properties",
+        "classpath:local.properties"
 })
 public interface WebDriverConfig extends Config {
     @Key("getBrowser")
@@ -22,7 +22,7 @@ public interface WebDriverConfig extends Config {
     String getBrowserSize();
 
     @Key("getBaseUrl")
-    @DefaultValue("https://github.com")
+   // @DefaultValue("https://github.com")
     String getBaseUrl();
 
     @Key("getRemoteUrl")
