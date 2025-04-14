@@ -3,10 +3,10 @@ package lesson19_owner.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.LoadPolicy(Config.LoadType.MERGE)
+@Config.LoadPolicy(Config.LoadType.FIRST)
 @Config.Sources({
-        "system:properties",
-        "classpath:configs/${env}.properties"
+        "classpath:config/${env}.properties",
+        "classpath:config/local.properties"
 })
 public interface WebDriverConfig extends Config {
     @Key("getBrowser")
@@ -14,7 +14,7 @@ public interface WebDriverConfig extends Config {
     String getBrowser();
 
     @Key("getBrowserVersion")
-    @DefaultValue("114.0.5735.90")
+    @DefaultValue("114")
     String getBrowserVersion();
 
     @Key("getBrowserSize")
