@@ -13,7 +13,7 @@ import static io.restassured.RestAssured.given;
 import static com.codeborne.selenide.Selenide.open;
 import static io.restassured.RestAssured.given;
 import static lesson18_api_ui.specs.ApiSpecs.codeResponse;
-import static lesson18_api_ui.specs.ApiSpecs.loginSpec;
+import static lesson18_api_ui.specs.ApiSpecs.reqSpec;
 
 public class LoginApiSteps extends BaseTest {
 
@@ -27,7 +27,7 @@ public class LoginApiSteps extends BaseTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return given(loginSpec)
+        return given(reqSpec)
                 .body(registerRequest)
                 .when()
                 .post("/Account/v1/Login")

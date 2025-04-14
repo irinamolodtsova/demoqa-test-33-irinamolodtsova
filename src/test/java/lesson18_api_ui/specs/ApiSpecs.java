@@ -13,7 +13,7 @@ import static lesson18_api_ui.helpers.CustomAllureListener.withCustomTemplates;
 
 public class ApiSpecs {
 
-    public static RequestSpecification loginSpec = with()
+    public static RequestSpecification reqSpec = with()
             .filter(withCustomTemplates())
             .log().uri()
             .log().body()
