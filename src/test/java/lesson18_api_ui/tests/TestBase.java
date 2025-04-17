@@ -3,6 +3,7 @@ package lesson18_api_ui.tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
+import io.restassured.RestAssured;
 import lesson18_api_ui.helpers.Attachments;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -19,6 +20,8 @@ public class TestBase {
     @BeforeAll
     static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";
+        Configuration.baseUrl = "https://demoqa.com";
+        RestAssured.baseURI = "https://demoqa.com";
         Configuration.browser = getBrowser();
         Configuration.browserVersion = getBrowserVersion();
         Configuration.browserSize = getBrowserSize();
