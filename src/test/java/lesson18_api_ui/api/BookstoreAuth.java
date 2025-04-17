@@ -23,8 +23,8 @@ public class BookstoreAuth {
     @Step("Получить токен")
     public static void getToken() {
         TokenRequestModel bodyData = new TokenRequestModel();
-        bodyData.setUserName(user.getLogin());
-        bodyData.setPassword(user.getPassword());
+        bodyData.setUserName(user.getUserLogin());
+        bodyData.setPassword(user.getUserPassword());
 
         TokenResponseModel response = step("Отправить запрос", () ->
                 given(bookStoreRequestSpec)
@@ -47,8 +47,8 @@ public class BookstoreAuth {
         getToken();
 
         LoginRequestModel bodyData = new LoginRequestModel();
-        bodyData.setUserName(user.getLogin());
-        bodyData.setPassword(user.getPassword());
+        bodyData.setUserName(user.getUserLogin());
+        bodyData.setPassword(user.getUserPassword());
 
         return given(bookStoreRequestSpec)
                 .body(bodyData)

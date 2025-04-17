@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class TestData {
-    private String login = "testira1";
-    private String password = "TESTira2!";
+    // String login = "testira1";
+     String userLogin = System.getenv("USERLOGIN");
+     String userPassword = System.getenv("USERPASSWORD");
+    // String password = "TESTira2!";
 }
