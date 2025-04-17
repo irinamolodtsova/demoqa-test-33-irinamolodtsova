@@ -64,3 +64,8 @@ task jenkins_params_test(type: Test) {
         includeTags("jenkins_params_test")
     }
 }
+task bookStore(type: Test) {
+    useJUnitPlatform {
+        includeTags("bookStore")
+    }
+}

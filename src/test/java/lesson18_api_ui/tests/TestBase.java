@@ -1,11 +1,10 @@
 package lesson18_api_ui.tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
-import lesson18_api_ui.helpers.Attach;
+import lesson18_api_ui.helpers.Attachments;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
-public class BaseTest {
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+
+public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
@@ -22,7 +23,7 @@ public class BaseTest {
         Configuration.browserSize = "1920x1080";
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 10000;
-      //  Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -39,11 +40,11 @@ public class BaseTest {
     }
 
     @AfterEach
-    void addAttachments() {
-        Attach.screenshotAs("Last Screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-        Selenide.closeWebDriver();
+    void shutDown() {
+        Attachments.screenshotAs("Last screenshot");
+        Attachments.pageSource();
+        Attachments.browserConsoleLogs();
+        Attachments.addVideo();
+        closeWebDriver();
     }
 }
