@@ -13,10 +13,6 @@ public class JenkinsProperties {
         return System.getProperty("browser","chrome");
     }
 
-    public static String getBrowserVersion(){
-        return System.getProperty("version", null);
-    }
-
     public static String getBrowserSize(){
         return System.getProperty("size","1920x1080");
     }

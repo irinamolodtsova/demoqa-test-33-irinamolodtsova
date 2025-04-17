@@ -23,7 +23,6 @@ public class TestBase {
         RestAssured.baseURI = "https://demoqa.com";
             Configuration.pageLoadStrategy = "eager";
             Configuration.browser = getBrowser();
-            Configuration.browserVersion = getBrowserVersion();
             Configuration.browserSize = getBrowserSize();
             Configuration.remote = getServer();
 
