@@ -21,7 +21,7 @@ public class BookstorePage {
         $("#closeSmallModal-ok").click();
     }
 
-    @Step
+    @Step("Проверить, что нет книг в профиле")
     public void bookDontExist(String isbn) {
         $(".ReactTable").$("a[href='/profile?book=" + isbn + "']").shouldNot(exist);
     }
