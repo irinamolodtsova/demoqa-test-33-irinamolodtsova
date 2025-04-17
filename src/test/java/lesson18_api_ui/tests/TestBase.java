@@ -13,19 +13,17 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static lesson18_api_ui.helpers.JenkinsProperties.*;
 
 public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.pageLoadStrategy = "eager";
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
-        Configuration.browser = getBrowser();
-        Configuration.browserVersion = getBrowserVersion();
-        Configuration.browserSize = getBrowserSize();
-        Configuration.remote = getServer();
+        Configuration.browserSize = "1920x1080";
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.timeout = 10000;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
@@ -33,6 +31,7 @@ public class TestBase {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
+
     }
 
     @BeforeEach
