@@ -3,6 +3,7 @@ package lesson18_api_ui.api;
 
 import io.qameta.allure.Step;
 import lesson18_api_ui.data.TestData;
+import lesson18_api_ui.helpers.JenkinsProperties;
 import lesson18_api_ui.models.Bookstore.request.LoginRequestModel;
 import lesson18_api_ui.models.Bookstore.request.TokenRequestModel;
 import lesson18_api_ui.models.Bookstore.response.LoginResponseModel;
@@ -23,8 +24,9 @@ public class BookstoreAuth {
     @Step("Получить токен")
     public static void getToken() {
         TokenRequestModel bodyData = new TokenRequestModel();
-        bodyData.setUserName(user.getUserLogin());
-        bodyData.setPassword(user.getUserPassword());
+        bodyData.setUserName(JenkinsProperties.getUserLogin());
+        bodyData.setPassword(JenkinsProperties.getUserPassword());
+
 
         TokenResponseModel response = step("Отправить запрос", () ->
                 given(bookStoreRequestSpec)
@@ -47,8 +49,8 @@ public class BookstoreAuth {
         getToken();
 
         LoginRequestModel bodyData = new LoginRequestModel();
-        bodyData.setUserName(user.getUserLogin());
-        bodyData.setPassword(user.getUserPassword());
+        bodyData.setUserName(JenkinsProperties.getUserLogin());
+        bodyData.setPassword(JenkinsProperties.getUserPassword());
 
         return given(bookStoreRequestSpec)
                 .body(bodyData)
