@@ -2,7 +2,6 @@ package lesson18_api_ui.api;
 
 
 import io.qameta.allure.Step;
-import lesson18_api_ui.data.TestData;
 import lesson18_api_ui.helpers.JenkinsProperties;
 import lesson18_api_ui.models.Bookstore.request.LoginRequestModel;
 import lesson18_api_ui.models.Bookstore.request.TokenRequestModel;
@@ -19,7 +18,6 @@ import static lesson18_api_ui.specs.BookStoreSpec.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BookstoreAuth {
-    static TestData user = new TestData();
 
     @Step("Получить токен")
     public static void getToken() {
