@@ -41,7 +41,6 @@ public class BookStoreTests extends TestBase {
         bookstorePage.deleteBookFromProfile(isbn);
         bookstorePage.bookDontExist(isbn);
 
-        // $(".ReactTable").$("a[href='/profile?book=" + isbn + "']").shouldNot(exist);
         books = bookstoreApi.getBooksFromProfile(session);
         assertTrue(books.isEmpty());
     }
