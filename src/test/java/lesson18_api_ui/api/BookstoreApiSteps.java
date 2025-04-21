@@ -44,14 +44,8 @@ public class BookstoreApiSteps {
     }
 
     @Step("Выбрать любую книгу")
-  //  public String selectRandomBook(List<BookModel> books) {
-//        Random random = new Random();
-//        int randomIndex = random.nextInt(books.size());
-//        BookModel randomBook = books.get(randomIndex);
-//
-//        return randomBook.getIsbn();
     public String selectRandomBook(List<BookModel> books) {
-        return books.get(faker.number().numberBetween(0, books.size()-1)).getIsbn();
+        return books.get(faker.number().numberBetween(0, books.size() - 1)).getIsbn();
     }
 
     @Step("Добавить книгу в список книг")
