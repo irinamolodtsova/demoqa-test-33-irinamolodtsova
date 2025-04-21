@@ -21,18 +21,18 @@ public class TestBase {
     static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
-            Configuration.pageLoadStrategy = "eager";
-            Configuration.browser = getBrowser();
-            Configuration.browserSize = getBrowserSize();
-            Configuration.remote = getServer();
+        Configuration.pageLoadStrategy = "eager";
+        Configuration.browser = getBrowser();
+        Configuration.browserSize = getBrowserSize();
+        Configuration.remote = getServer();
 
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("selenoid:options", Map.<String, Object>of(
-                    "enableVNC", true,
-                    "enableVideo", true
-            ));
-            Configuration.browserCapabilities = capabilities;
-        }
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
+    }
 
 
     @BeforeEach

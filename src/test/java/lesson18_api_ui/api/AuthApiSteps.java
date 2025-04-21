@@ -17,7 +17,7 @@ import static io.restassured.RestAssured.given;
 import static lesson18_api_ui.specs.BookStoreSpec.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BookstoreAuth {
+public class AuthApiSteps {
 
     @Step("Получить токен")
     public static void getToken() {

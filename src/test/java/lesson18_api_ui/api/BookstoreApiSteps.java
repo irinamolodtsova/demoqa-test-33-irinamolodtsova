@@ -1,6 +1,7 @@
 package lesson18_api_ui.api;
 
 
+import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
 import lesson18_api_ui.models.Bookstore.*;
 import lesson18_api_ui.models.Bookstore.request.AddBookToProfileRequestModel;
@@ -16,6 +17,7 @@ import static io.restassured.RestAssured.given;
 import static lesson18_api_ui.specs.BookStoreSpec.*;
 
 public class BookstoreApiSteps {
+    private final Faker faker = new Faker();
 
     @Step("Удалить все книги из профиля")
     public void deleteAllBooksFromProfile(Session session) {
@@ -42,12 +44,14 @@ public class BookstoreApiSteps {
     }
 
     @Step("Выбрать любую книгу")
+  //  public String selectRandomBook(List<BookModel> books) {
+//        Random random = new Random();
+//        int randomIndex = random.nextInt(books.size());
+//        BookModel randomBook = books.get(randomIndex);
+//
+//        return randomBook.getIsbn();
     public String selectRandomBook(List<BookModel> books) {
-        Random random = new Random();
-        int randomIndex = random.nextInt(books.size());
-        BookModel randomBook = books.get(randomIndex);
-
-        return randomBook.getIsbn();
+        return books.get(faker.number().numberBetween(0, books.size()-1)).getIsbn();
     }
 
     @Step("Добавить книгу в список книг")

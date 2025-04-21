@@ -5,7 +5,7 @@ import lesson18_api_ui.api.BookstoreApiSteps;
 import lesson18_api_ui.helpers.WithLogin;
 import lesson18_api_ui.models.Bookstore.BookModel;
 import lesson18_api_ui.models.Session;
-import lesson18_api_ui.pages.BookstorePage;
+import lesson18_api_ui.pages.ProfilePage;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookStoreTests extends TestBase {
 
     BookstoreApiSteps bookstoreApi = new BookstoreApiSteps();
-    BookstorePage bookstorePage = new BookstorePage();
+    ProfilePage profilePage = new ProfilePage();
 
     @WithLogin
     @DisplayName("Удаление книги из профиля")
@@ -37,9 +37,9 @@ public class BookStoreTests extends TestBase {
         books = bookstoreApi.addBookToProfile(collectionOfIsbns, session);
         assertEquals(collectionOfIsbns, books);
 
-        bookstorePage.openProfile();
-        bookstorePage.deleteBookFromProfile(isbn);
-        bookstorePage.bookDontExist(isbn);
+        profilePage.openProfile();
+        profilePage.deleteBookFromProfile(isbn);
+        profilePage.bookDontExist(isbn);
 
         books = bookstoreApi.getBooksFromProfile(session);
         assertTrue(books.isEmpty());
