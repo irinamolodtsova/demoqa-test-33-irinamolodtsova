@@ -9,21 +9,22 @@ public class JenkinsProperties {
 
         return "https://" + login + ":" + pw + "@" + server + "/wd/hub";
     }
-    public static String getBrowser(){
-        return System.getProperty("browser","chrome");
+
+    public static String getBrowser() {
+        return System.getProperty("browser", "chrome");
     }
 
-    public static String getBrowserSize(){
-        return System.getProperty("size","1920x1080");
+    public static String getBrowserSize() {
+        return System.getProperty("size", "1920x1080");
     }
 
-    public static String getUserLogin(){
+    public static String getUserLogin() {
         String userLogin = System.getProperty("userLogin");
-        return System.getProperty("userLogin",userLogin);
+        return System.getProperty("userLogin", userLogin);
     }
 
-    public static String getUserPassword(){
+    public static String getUserPassword() {
         String userPassword = System.getProperty("userPassword");
-        return System.getProperty("userPassword",userPassword);
+        return System.getProperty("userPassword", userPassword);
     }
 }

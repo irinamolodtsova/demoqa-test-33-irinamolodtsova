@@ -1,4 +1,4 @@
-package lesson18_api_ui.helpers;
+package lesson18_api_ui.extensions;
 
 
 import lesson18_api_ui.api.AuthApiSteps;
@@ -15,10 +15,6 @@ public class LoginExtension implements BeforeEachCallback, ParameterResolver {
 
     public static Session getSession() {
         return session.get();
-    }
-
-    public static void clearSession() {
-        session.remove();
     }
 
     @Override

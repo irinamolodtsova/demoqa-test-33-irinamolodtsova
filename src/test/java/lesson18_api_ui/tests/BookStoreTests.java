@@ -1,8 +1,9 @@
 package lesson18_api_ui.tests;
 
 
+import lesson18_api_ui.api.AccountApiSteps;
 import lesson18_api_ui.api.BookstoreApiSteps;
-import lesson18_api_ui.helpers.WithLogin;
+import lesson18_api_ui.annotations.WithLogin;
 import lesson18_api_ui.models.Bookstore.BookModel;
 import lesson18_api_ui.models.Session;
 import lesson18_api_ui.pages.ProfilePage;
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookStoreTests extends TestBase {
 
     BookstoreApiSteps bookstoreApi = new BookstoreApiSteps();
+    AccountApiSteps accountApiSteps = new AccountApiSteps();
     ProfilePage profilePage = new ProfilePage();
 
     @WithLogin
@@ -41,7 +43,7 @@ public class BookStoreTests extends TestBase {
         profilePage.deleteBookFromProfile(isbn);
         profilePage.bookDontExist(isbn);
 
-        books = bookstoreApi.getBooksFromProfile(session);
+        books = accountApiSteps.getBooksFromProfile(session);
         assertTrue(books.isEmpty());
     }
 }

@@ -1,5 +1,6 @@
-package lesson18_api_ui.helpers;
+package lesson18_api_ui.annotations;
 
+import lesson18_api_ui.extensions.LoginExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.lang.annotation.ElementType;
