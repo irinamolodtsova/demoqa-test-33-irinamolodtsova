@@ -38,7 +38,8 @@ dependencies {
             'io.rest-assured:rest-assured:5.3.1',
             "io.qameta.allure:allure-rest-assured:2.29.1",
             "org.aeonbits.owner:owner:1.0.12",
-            "io.github.bonigarcia:webdrivermanager:6.0.0"
+            "io.github.bonigarcia:webdrivermanager:6.0.0",
+            "io.appium:java-client:9.4.0"
     )
 }
 
@@ -67,5 +68,10 @@ task jenkins_params_test(type: Test) {
 task bookStore(type: Test) {
     useJUnitPlatform {
         includeTags("bookStore")
+    }
+}
+task mobile(type: Test) {
+    useJUnitPlatform {
+        includeTags("mobile")
     }
 }
