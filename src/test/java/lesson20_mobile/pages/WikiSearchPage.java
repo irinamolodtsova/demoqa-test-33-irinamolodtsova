@@ -33,8 +33,8 @@ public class WikiSearchPage {
         $(xpath("//android.widget.TextView[@text='Starbucks']")).click();
     }
 
-    @Step("Check you visited the page - Starbuks")
-    public void checkTheOpenPage() {
+    @Step("Check you visited the page - error message")
+    public void checkAnErrorMessage() {
         $(xpath("//android.widget.TextView[@text='An error occurred']")).shouldBe(visible);
     }
 

@@ -22,6 +22,6 @@ public class SearchTest extends TestBase {
         wikiSearchPage.searchData("Starbucks");
         wikiSearchPage.checkFoundResult();
         wikiSearchPage.clickToTheFoundPage();
-        wikiSearchPage.checkTheOpenPage();
+        wikiSearchPage.checkAnErrorMessage();
     }
 }
