@@ -13,15 +13,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class BrowserstackDriver implements WebDriverProvider {
-    private final WebDriverConfig config;
-
-    public BrowserstackDriver() {
-        this.config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
-    }
+    static WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     @Nonnull
     @Override
-    public WebDriver createDriver(@Nonnull Capabilities capabilities) {
+    public WebDriver createDriver(@Nonnull Capabilities capabilities)  {
         MutableCapabilities caps = new MutableCapabilities();
         caps.setCapability("browserstack.user", config.getBrowserstackUser());
         caps.setCapability("browserstack.key", config.getBrowserstackKey());
