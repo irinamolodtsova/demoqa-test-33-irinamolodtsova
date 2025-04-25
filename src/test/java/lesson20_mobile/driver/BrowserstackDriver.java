@@ -15,6 +15,7 @@ import java.net.URL;
 
 public class BrowserstackDriver implements WebDriverProvider {
     static WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+
     @Nonnull
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
@@ -30,6 +31,6 @@ public class BrowserstackDriver implements WebDriverProvider {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-}
+    }
 }
 
