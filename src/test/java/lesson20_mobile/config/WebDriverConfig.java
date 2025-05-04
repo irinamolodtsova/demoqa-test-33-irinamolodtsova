@@ -5,8 +5,8 @@ import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.FIRST)
 @Config.Sources({
-        "classpath:mobile/${env}.properties",
-        "classpath:mobile/local.properties"
+        "file:src/test/resources/mobile/mobile.properties",
+        "file:src/test/resources/mobile/local.properties"
 })
 
 public interface WebDriverConfig extends Config {
