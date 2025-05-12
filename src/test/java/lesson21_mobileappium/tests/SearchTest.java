@@ -4,7 +4,7 @@ import lesson21_mobileappium.pages.WikiSearchPage;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-@Tag("AndroidStudio")
+@Tag("AndroidStudioSearchTest")
 public class SearchTest extends TestBase {
 
     WikiSearchPage wikiSearchPage = new WikiSearchPage();

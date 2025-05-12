@@ -75,8 +75,13 @@ task mobile(type: Test) {
         includeTags("mobile")
     }
 }
-task AndroidStudio(type: Test) {
+task AndroidStudioOnboardingTest(type: Test) {
     useJUnitPlatform {
-        includeTags("AndroidStudio")
+        includeTags("AndroidStudioOnboardingTest")
+    }
+}
+task AndroidStudioSearchTest(type: Test) {
+    useJUnitPlatform {
+        includeTags("AndroidStudioSearchTest")
     }
 }
