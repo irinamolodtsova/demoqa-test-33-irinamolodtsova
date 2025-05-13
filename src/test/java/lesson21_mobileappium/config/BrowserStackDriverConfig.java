@@ -8,7 +8,7 @@ import org.aeonbits.owner.Config;
         "file:src/test/resources/AndroidStudio/browserstack.properties"
 })
 
-public interface BrowserstackDriverConfig extends Config {
+public interface BrowserStackDriverConfig extends Config {
 
     @Key("app")
     String getApp();
